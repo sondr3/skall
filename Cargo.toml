@@ -4,6 +4,7 @@ version = "0.1.0"
 authors = ["Sondre Nilsen <nilsen.sondre@gmail.com>"]
 edition = "2018"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
 [dependencies]
+git2 = { version = "0.10", default-features = false, features = [] }
+heim = { version = "0.0.8", default-features = false, features = ["host"] }
+colored = "1.9"

@@ -29,6 +29,6 @@ pkgs.gcc9Stdenv.mkDerivation {
     export PATH=$PWD/target/debug:$PATH
   '';
 
-    # Use LLD for linking, it is much faster than the GCC linker
-    RUSTFLAGS="-C link-arg=-fuse-ld=lld";
+  # Use LLD for linking, it is much faster than the GCC linker
+  RUSTFLAGS = "-C link-arg=-fuse-ld=lld";
 }
