@@ -1,9 +1,7 @@
 let
   pkgs = import ./nix/nixpkgs.nix;
 
-  inherit (pkgs)
-    stdenv
-    ;
+  inherit (pkgs) stdenv;
 
   rust = (
     pkgs.rustChannelOf {
@@ -12,7 +10,6 @@ let
   ).rust.override {
     extensions = [
       "clippy-preview"
-      "rls-preview"
       "rustfmt-preview"
       "rust-analysis"
       "rust-std"
@@ -20,14 +17,18 @@ let
     ];
   };
 in
-pkgs.mkShell {
+pkgs.gcc9Stdenv.mkDerivation {
+  name = "skall";
   buildInputs = with pkgs; [
-    openssl
     pkgconfig
+    lld
     rust
   ];
 
   shellHook = ''
     export PATH=$PWD/target/debug:$PATH
   '';
+
+    # Use LLD for linking, it is much faster than the GCC linker
+    RUSTFLAGS="-C link-arg=-fuse-ld=lld";
 }
