@@ -6,5 +6,4 @@ edition = "2018"
 
 [dependencies]
 git2 = { version = "0.10", default-features = false, features = [] }
-heim = { version = "0.0.8", default-features = false, features = ["host"] }
 colored = "1.9"
